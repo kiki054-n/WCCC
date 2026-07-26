@@ -156,6 +156,18 @@ Governance ensures neutrality and global fairness.
 
 ---
 
+# 📜 10. License Notice (Template)
+
+This work is provided under the Back-Flow Open License (BFOL v0.1).
+
+Commercial use is permitted.
+However, a portion of the profits is returned to the creator, the community, and global public goods.
+
+Please adhere to the principles of transparency (Mirror), contribution (Orb), and non-exploitation (Sword).
+
+For details, please refer to:
+https://kiki054-n.github.io/WCCC/docs/bfol-license.md
+
 ---
 
 # 🤝 11. Contributing to BFOL
@@ -177,7 +189,4 @@ It ensures:
 - Protection against exploitation  
 
 BFOL is a core component of WCCC’s international AI safety standard.
-
-
-# 📜 10. License Notice (Template)
 

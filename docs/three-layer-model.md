@@ -1,4 +1,3 @@
-# 🔧 Three-Layer Model – WCCC構造図
 
 # 🔧 Three-Layer Model – Global Architecture of WCCC
 
@@ -97,7 +96,8 @@ WCCC is an open, collaborative project.
 Everyone is invited to co-create the future of AI safety.
 
 
----
+-# 🔧 Three-Layer Model – WCCC構造図
+--
 
 
 ## 🟦 Layer 1: We Choose（個人）

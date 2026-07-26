@@ -106,11 +106,9 @@ Ideas, translations, corrections, research, and code are all welcome.
 👉 `docs/contribute.md`
 
 ---
-
 ## 🌐 Official Website (GitHub Pages)
-
-https://\<yourname\>.github.io/WCCC/
-
+https://kiki054-n.github.io/WCCC/
+**🛰️ WCCC社会気象衛星 - 風を読む羅針盤を公開中**
 ---
 
 ## 📄 License

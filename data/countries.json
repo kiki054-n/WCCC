@@ -1,0 +1,139 @@
+{
+  "meta": {
+    "version": "1.0",
+    "last_updated": "2026-07-27",
+    "sources": {
+      "WJP": "World Justice Project Rule of Law Index 2024 - Score 0-1",
+      "RSF": "Reporters Without Borders Press Freedom Index 2024/2026 - Rank 1-180 (lower is better)",
+      "CPI": "Transparency International CPI 2024 - Score 0-100 (higher is cleaner)",
+      "VDEM_LDI": "V-Dem Liberal Democracy Index 2024 - 0-1",
+      "EIU": "Economist Democracy Index 2024 - 0-10"
+    },
+    "mapping": {
+      "judiciary": "WJP Rule of Law Index * 100",
+      "media_wind": "100 - (RSF score normalized) => stronger wind = lower press freedom",
+      "privilege_wind": "100 - CPI",
+      "people_sovereignty": "V-Dem participatory + EIU participation avg *100",
+      "legislative_balance": "V-Dem Liberal Democracy *100 * legislative component"
+    }
+  },
+  "countries": {
+    "japan": {
+      "name_ja": "日本",
+      "name_en": "Japan",
+      "flag": "🇯🇵",
+      "WJP_score": 0.78,
+      "WJP_rank": 15,
+      "RSF_rank_2024": 70,
+      "RSF_rank_2026": 62,
+      "RSF_score_2026": 62.9,
+      "CPI_score_2024": 71,
+      "VDEM_LDI": 0.734,
+      "VDEM_participatory": 0.526,
+      "EIU_score": 8.48,
+      "compass": {
+        "judiciary": 78,
+        "legislative": 60,
+        "executive": 75,
+        "people_sovereignty": 58,
+        "media_wind_strength": 62,
+        "privilege_wind_strength": 29
+      },
+      "last_verified": "2026-07-27",
+      "contributor": "WCCC Satellite"
+    },
+    "germany": {
+      "name_ja": "ドイツ",
+      "name_en": "Germany",
+      "flag": "🇩🇪",
+      "WJP_score": 0.83,
+      "WJP_rank": 5,
+      "RSF_rank_2024": 10,
+      "RSF_score": 14.8,
+      "CPI_score_2024": 75,
+      "VDEM_LDI": 0.83,
+      "EIU_score": 8.8,
+      "compass": {
+        "judiciary": 83,
+        "legislative": 80,
+        "executive": 60,
+        "people_sovereignty": 78,
+        "media_wind_strength": 25,
+        "privilege_wind_strength": 25
+      },
+      "last_verified": "2026-07-27"
+    },
+    "usa": {
+      "name_ja": "アメリカ",
+      "name_en": "USA",
+      "flag": "🇺🇸",
+      "WJP_score": 0.7,
+      "WJP_rank": 26,
+      "RSF_rank_2024": 55,
+      "RSF_rank_2026": 64,
+      "CPI_score_2024": 65,
+      "VDEM_LDI": 0.72,
+      "EIU_score": 7.85,
+      "compass": {
+        "judiciary": 70,
+        "legislative": 50,
+        "executive": 70,
+        "people_sovereignty": 62,
+        "media_wind_strength": 68,
+        "privilege_wind_strength": 35
+      },
+      "last_verified": "2026-07-27"
+    },
+    "south_korea": {
+      "name_ja": "韓国",
+      "name_en": "South Korea",
+      "flag": "🇰🇷",
+      "WJP_score": 0.74,
+      "RSF_rank_2024": 62,
+      "CPI_score_2024": 64,
+      "compass": {
+        "judiciary": 74,
+        "legislative": 65,
+        "executive": 68,
+        "people_sovereignty": 65,
+        "media_wind_strength": 55,
+        "privilege_wind_strength": 36
+      },
+      "last_verified": "2026-07-27"
+    },
+    "uk": {
+      "name_ja": "イギリス",
+      "name_en": "UK",
+      "flag": "🇬🇧",
+      "RSF_rank_2024": 26,
+      "CPI_score_2024": 71,
+      "WJP_score": 0.78,
+      "compass": {
+        "judiciary": 78,
+        "legislative": 70,
+        "executive": 65,
+        "people_sovereignty": 72,
+        "media_wind_strength": 38,
+        "privilege_wind_strength": 29
+      },
+      "last_verified": "2026-07-27"
+    },
+    "sweden": {
+      "name_ja": "スウェーデン",
+      "name_en": "Sweden",
+      "flag": "🇸🇪",
+      "WJP_score": 0.86,
+      "RSF_rank_2024": 3,
+      "CPI_score_2024": 80,
+      "compass": {
+        "judiciary": 86,
+        "legislative": 85,
+        "executive": 55,
+        "people_sovereignty": 85,
+        "media_wind_strength": 15,
+        "privilege_wind_strength": 20
+      },
+      "last_verified": "2026-07-27"
+    }
+  }
+}

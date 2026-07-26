@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "version": "1.0",
+    "purpose": "Historical wind shifts for WCCC satellite"
+  },
+  "events": [
+    {
+      "id": "covid_2020",
+      "date": "2020-03-11",
+      "name_ja": "COVID-19パンデミック宣言",
+      "impact": {
+        "executive": 15,
+        "people_sovereignty": -10,
+        "media_wind": 10
+      },
+      "description": "行政権限が強化、国民の移動制限"
+    },
+    {
+      "id": "tokyo2020",
+      "date": "2021-07-23",
+      "name_ja": "東京五輪開催",
+      "impact": {
+        "media_wind": 20,
+        "privilege_wind": 10
+      },
+      "description": "メディアの風が扇情的に"
+    },
+    {
+      "id": "abe_2022",
+      "date": "2022-07-08",
+      "name_ja": "安倍元首相銃撃・統一教会問題",
+      "impact": {
+        "judiciary": -5,
+        "people_sovereignty": 15,
+        "media_wind": 25
+      },
+      "description": "国民主権が一時的に覚醒"
+    },
+    {
+      "id": "ai_boom_2023",
+      "date": "2023-03-01",
+      "name_ja": "生成AIブーム",
+      "impact": {
+        "people_sovereignty": 10,
+        "media_wind": 15
+      },
+      "description": "WCCCの玉が生まれる土壌"
+    },
+    {
+      "id": "uragane_2024",
+      "date": "2024-01-01",
+      "name_ja": "能登半島地震・裏金問題",
+      "impact": {
+        "people_sovereignty": -12,
+        "privilege_wind": 20,
+        "judiciary": -8
+      },
+      "description": "乖離角が急拡大した転換点"
+    },
+    {
+      "id": "wccc_launch_2026",
+      "date": "2026-07-27",
+      "name_ja": "WCCC社会気象衛星打ち上げ",
+      "impact": {
+        "people_sovereignty": 20,
+        "media_wind": -15
+      },
+      "description": "風の可視化により濁り度が低下"
+    }
+  ]
+}

@@ -142,7 +142,6 @@ BFOLは以下の機関によって支えられる：
 透明性（鏡）・貢献（玉）・非搾取性（剣）の原則を遵守してください。
 
 詳細は以下を参照：
-https://kiki054-n.github.io/WCCC/docs/bfol-license-ja.md
 
 
 

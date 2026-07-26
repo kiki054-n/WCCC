@@ -14,20 +14,3 @@ AI安全保障の国際標準を構築するためのオープンプロジェク
 
 ---
 
-WCCC/
-├── README.md
-├── _config.yml
-├── docs/
-│   ├── index.md                 ← 英語トップページ（公式）
-│   ├── index-ja.md              ← 日本語トップページ
-│   ├── three-layer-model.md     ← 三層構造（英語）
-│   ├── ttt-structure.md         ← TTT構造（英語）
-│   ├── bfol-license.md          ← BFOLライセンス（英語）
-│   ├── public-goods-allocation.md ← 公共財配分モデル（英語）
-│   ├── roadmap.md               ← ロードマップ（英語）
-│   ├── contribute.md            ← 参加方法（英語）
-│   ├── un-policy-proposal.md    ← 国連提出用政策文書（英語）
-│   ├── un-cover-letter.md       ← 国連提出用カバーレター（英語）
-│   ├── logo.svg                 ← WCCCロゴ
-│   └── assets/                  ← 画像や追加資料（任意）
-└── LICENSE（任意）

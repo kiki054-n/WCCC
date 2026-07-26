@@ -166,7 +166,7 @@ However, a portion of the profits is returned to the creator, the community, and
 Please adhere to the principles of transparency (Mirror), contribution (Orb), and non-exploitation (Sword).
 
 For details, please refer to:
-https://kiki054-n.github.io/WCCC/docs/bfol-license.md
+
 
 ---
 

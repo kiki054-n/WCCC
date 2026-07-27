@@ -115,6 +115,7 @@ https://kiki054-n.github.io/WCCC/
 
 WCCC documentation is released under the **Back-Flow Open License (BFOL)**.
 
+👉 `LICENSE_EN`
 ---
 
 ## ✨ Vision

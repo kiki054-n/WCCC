@@ -1,21 +1,56 @@
-MIT License
+Back-Flow Open License (BFOL) – Version 1.0
 
-Copyright (c) 2026 川上真潔
+Copyright (c) 2026 kiki054-n (World Contribution Circulation System, WCCC)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+本ソフトウェアおよび関連ドキュメント（以下「本作品」）は、
+Back-Flow Open License (BFOL) の条件の下で提供されます。
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. 利用の自由
+   本作品の利用、複製、改変、統合、公開、配布、サブライセンス、
+   および商用利用を含むあらゆる形態の利用を許可します。
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+2. 条件
+   本作品を利用する者は、以下の条件に従うものとします。
+
+   (a) 本ライセンスおよび著作権表示を、すべての複製物または重要な部分に含めること。
+   (b) 本作品を改変した場合、変更点を明示し、本ライセンスの下で公開すること。
+
+3. 利益還流義務（Back-Flow Obligation）
+   本作品を商用利用し、その結果として利益（営業利益、純利益、または
+   利用者に定義された利益指標）が発生した場合、利用者は以下の義務を負うものとします。
+
+   (a) 発生した利益のうち、少なくとも 1% を、
+       世界貢献循環システム（WCCC）の貢献循環基金（WCCC Global Fund）
+       または同等の目的を持つ公的・国際的な基金に還流すること。
+
+   (b) 還流の対象となる基金は、
+       - 国連（UN）の持続可能な開発目標（SDGs）関連基金、
+       - 各国のTama Tax制度、
+       - またはWCCCが指定する国際貢献基金
+       のいずれかとします。
+
+   (c) 還流の方法は、
+       - 直接寄付、
+       - 税制を通じた指定寄付、
+       - またはWCCCが承認する他の方法
+       によるものとします。
+
+   (d) 利用者は、還流の実績をWCCCプロジェクト（https://github.com/kiki054-n/WCCC）
+       に報告することを推奨します（任意）。
+
+4. 非商用利用
+   研究、教育、個人利用など、非営利目的での利用については、
+   利益還流義務（第3条）は適用されません。
+
+5. 保証の否認
+   本作品は「現状のまま」提供され、明示または黙示を問わず、
+   いかなる保証もありません。作者または著作権者は、
+   本作品の利用または不能利用から生じるいかなる損害についても責任を負いません。
+
+6. 準拠法
+   本ライセンスは日本法に準拠し、解釈されます。
+
+7. 連絡先
+   本ライセンスに関する問い合わせは、
+   WCCCプロジェクト（https://github.com/kiki054-n/WCCC）
+   までご連絡ください。

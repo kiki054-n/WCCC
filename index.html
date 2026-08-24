@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WCCC – 世界貢献循環評議会 | ビジュアライゼーション集</title>
+<meta name="description" content="WCCC(世界貢献循環評議会)が公開する社会気象衛星・羅針盤ビジュアライゼーション集。一覧から選んでその場で表示できます。">
+<link rel="icon" href="logo.svg">
+<style>
+  :root{
+    --bg:#f5f7fa;
+    --panel:#ffffff;
+    --border:#e1e6ec;
+    --text:#1b2430;
+    --muted:#5b6675;
+    --accent:#2563eb;
+    --accent-soft:#e8effe;
+    --sidebar-bg:#101826;
+    --sidebar-text:#c7d0dd;
+    --sidebar-text-dim:#7c8aa0;
+    --sidebar-active-bg:#1d2b45;
+    --sidebar-active-border:#4c8dff;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0d1117;
+      --panel:#151c26;
+      --border:#26303e;
+      --text:#e6ebf2;
+      --muted:#8b96a5;
+      --accent:#4c8dff;
+      --accent-soft:#132540;
+      --sidebar-bg:#0a0f17;
+      --sidebar-text:#c7d0dd;
+      --sidebar-text-dim:#6b7484;
+      --sidebar-active-bg:#16233a;
+      --sidebar-active-border:#4c8dff;
+    }
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Segoe UI,Roboto,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+  }
+  .app{
+    display:flex;
+    min-height:100vh;
+  }
+  /* ---------- Sidebar ---------- */
+  .sidebar{
+    width:320px;
+    flex:0 0 320px;
+    background:var(--sidebar-bg);
+    color:var(--sidebar-text);
+    display:flex;
+    flex-direction:column;
+    max-height:100vh;
+    position:sticky;
+    top:0;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:.65rem;
+    padding:1.25rem 1.25rem .9rem;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .brand img{width:34px;height:34px;flex:0 0 auto;}
+  .brand-text h1{
+    font-size:.95rem;
+    margin:0;
+    font-weight:700;
+    color:#fff;
+    line-height:1.3;
+  }
+  .brand-text p{
+    margin:.15rem 0 0;
+    font-size:.72rem;
+    color:var(--sidebar-text-dim);
+    line-height:1.3;
+  }
+  .home-link{
+    margin:.85rem 1.25rem 0;
+    font-size:.78rem;
+    color:var(--sidebar-text-dim);
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:.3rem;
+  }
+  .home-link:hover{color:#fff;}
+  .nav{
+    flex:1;
+    overflow-y:auto;
+    padding:1rem .75rem 1.5rem;
+  }
+  .nav-group + .nav-group{margin-top:1.4rem;}
+  .nav-group-title{
+    font-size:.68rem;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--sidebar-text-dim);
+    padding:0 .5rem .5rem;
+    font-weight:600;
+  }
+  .nav-item{
+    display:block;
+    width:100%;
+    text-align:left;
+    background:transparent;
+    border:1px solid transparent;
+    border-left:3px solid transparent;
+    color:var(--sidebar-text);
+    padding:.55rem .6rem;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:.83rem;
+    line-height:1.35;
+    margin-bottom:.2rem;
+    font-family:inherit;
+  }
+  .nav-item .emoji{margin-right:.4rem;}
+  .nav-item .desc{
+    display:block;
+    font-size:.72rem;
+    color:var(--sidebar-text-dim);
+    margin-top:.15rem;
+  }
+  .nav-item:hover{background:rgba(255,255,255,.05);}
+  .nav-item.active{
+    background:var(--sidebar-active-bg);
+    border-left-color:var(--sidebar-active-border);
+    color:#fff;
+  }
+  .nav-item.active .desc{color:#a9c4f5;}
+  .sidebar-footer{
+    padding:.85rem 1.25rem;
+    border-top:1px solid rgba(255,255,255,.08);
+    font-size:.7rem;
+    color:var(--sidebar-text-dim);
+  }
+  .sidebar-footer a{color:var(--sidebar-text-dim);}
+  .sidebar-footer a:hover{color:#fff;}
+
+  /* ---------- Main ---------- */
+  .main{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    min-width:0;
+  }
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:1rem;
+    padding:.85rem 1.25rem;
+    border-bottom:1px solid var(--border);
+    background:var(--panel);
+  }
+  .topbar-title{
+    font-size:.95rem;
+    font-weight:700;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
+  .topbar-title .kicker{
+    display:block;
+    font-size:.7rem;
+    font-weight:600;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    margin-bottom:.15rem;
+  }
+  .topbar-actions{
+    display:flex;
+    gap:.5rem;
+    flex:0 0 auto;
+  }
+  .topbar-actions a, .menu-toggle{
+    display:inline-flex;
+    align-items:center;
+    gap:.35rem;
+    font-size:.78rem;
+    padding:.4rem .7rem;
+    border-radius:7px;
+    border:1px solid var(--border);
+    color:var(--text);
+    text-decoration:none;
+    background:var(--panel);
+    cursor:pointer;
+  }
+  .topbar-actions a:hover, .menu-toggle:hover{background:var(--accent-soft);border-color:var(--accent);}
+  .menu-toggle{display:none;}
+  .viewer{
+    flex:1;
+    position:relative;
+    background:var(--bg);
+  }
+  .viewer iframe{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0;
+    background:#fff;
+  }
+  .empty-state{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:2rem;
+    color:var(--muted);
+  }
+  .empty-state h2{color:var(--text);margin:0 0 .4rem;font-size:1.1rem;}
+  .empty-state p{margin:0;max-width:32em;font-size:.85rem;line-height:1.6;}
+
+  @media (max-width: 860px){
+    .sidebar{
+      position:fixed;
+      inset:0 auto 0 0;
+      z-index:20;
+      transform:translateX(-100%);
+      transition:transform .2s ease;
+      box-shadow:2px 0 16px rgba(0,0,0,.25);
+    }
+    .sidebar.open{transform:translateX(0);}
+    .menu-toggle{display:inline-flex;}
+    .overlay{
+      display:none;
+      position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:15;
+    }
+    .overlay.open{display:block;}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <div class="overlay" id="overlay"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <img src="logo.svg" alt="WCCC logo">
+      <div class="brand-text">
+        <h1>WCCC</h1>
+        <p>世界貢献循環評議会 &mdash; ビジュアライゼーション集</p>
+      </div>
+    </div>
+    <a class="home-link" href="index-ja.md">&larr; プロジェクト概要 (README) へ</a>
+
+    <nav class="nav" id="nav"></nav>
+
+    <div class="sidebar-footer">
+      <a href="https://github.com/kiki054-n/WCCC" target="_blank" rel="noopener">GitHub リポジトリ</a>
+      &nbsp;&middot;&nbsp; BFOL License
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="topbar-title" id="topbarTitle">
+        <button class="menu-toggle" id="menuToggle" aria-label="メニュー">&#9776; 一覧</button>
+      </div>
+      <div class="topbar-actions">
+        <a id="openNewTab" href="#" target="_blank" rel="noopener">新しいタブで開く &#8599;</a>
+      </div>
+    </div>
+    <div class="viewer" id="viewer">
+      <div class="empty-state" id="emptyState">
+        <h2>左のメニューから表示したい資料を選んでください</h2>
+        <p>社会気象衛星・羅針盤の各ビジュアライゼーションや設計資料を、このページ内でそのまま確認できます。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ---- ここに表示したいコンテンツを追加・編集する ----
+const groups = [
+  {
+    title: "🛰️ 社会気象衛星",
+    items: [
+      { emoji: "🛰️", label: "風を読む羅針盤(最終版)", desc: "最新版の統合ビジュアライゼーション", file: "assets/WCCC社会気象衛星-風を読む羅針盤-最終版.html" },
+      { emoji: "🛰️", label: "世界比較版", desc: "各国の状況を横並びで比較", file: "assets/WCCC社会気象衛星-世界比較版.html" },
+      { emoji: "🛰️", label: "自国 vs 相手国 (v6)", desc: "二国間の比較に特化した版", file: "assets/WCCC社会気象衛星-v6-自国-vs-相手国.html" },
+      { emoji: "🛰️", label: "リアルタイム & 歴史版 (v5)", desc: "時系列の推移を確認できる版", file: "assets/WCCC社会気象衛星-v5-リアルタイム＆歴史版.html" },
+      { emoji: "🍇", label: "テロワール気象衛星 (v8)", desc: "山裏 Vineyard・世界のワイン産地と比較", file: "assets/山裏-Vineyard-テロワール気象衛星-v8-世界のワイン産地と比較.html" }
+    ]
+  },
+  {
+    title: "🧭 羅針盤ビジュアライゼーション",
+    items: [
+      { emoji: "🧭", label: "三重羅針盤", desc: "風の可視化", file: "assets/三重羅針盤-風の可視化.html" },
+      { emoji: "🧭", label: "二重羅針盤", desc: "権力構造と針路の乖離を可視化", file: "assets/二重羅針盤-権力構造と針路の乖離を可視化.html" },
+      { emoji: "🧭", label: "国家羅針盤", desc: "4つの柱で見る舵取り", file: "assets/国家羅針盤-4つの柱で見る舵取り.html" }
+    ]
+  },
+  {
+    title: "📚 学び・アカデミー",
+    items: [
+      { emoji: "📚", label: "相互学習アカデミー版 (v7)", desc: "学びの玉を交換する", file: "assets/WCCC-v7-相互学習アカデミー版-学びの玉を交換する.html" }
+    ]
+  },
+  {
+    title: "📄 設計資料 / その他",
+    items: [
+      { emoji: "📄", label: "Actors Schema", desc: "v13 多主体乖離可視化スキーマ設計 (Markdown)", file: "assets/Pursuit/Actors_schema.md" },
+      { emoji: "🗂️", label: "旧トップページ (index0)", desc: "以前のトップページ版", file: "assets/index0.html" }
+    ]
+  }
+];
+
+const nav = document.getElementById('nav');
+const viewer = document.getElementById('viewer');
+const emptyState = document.getElementById('emptyState');
+const topbarTitle = document.getElementById('topbarTitle');
+const openNewTab = document.getElementById('openNewTab');
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+const menuToggle = document.getElementById('menuToggle');
+
+let iframe = null;
+let buttons = [];
+
+groups.forEach(group => {
+  const groupEl = document.createElement('div');
+  groupEl.className = 'nav-group';
+
+  const titleEl = document.createElement('div');
+  titleEl.className = 'nav-group-title';
+  titleEl.textContent = group.title;
+  groupEl.appendChild(titleEl);
+
+  group.items.forEach(item => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-item';
+    btn.innerHTML = '<span class="emoji">' + item.emoji + '</span>' + item.label +
+      '<span class="desc">' + item.desc + '</span>';
+    btn.addEventListener('click', () => selectItem(item, btn));
+    groupEl.appendChild(btn);
+    buttons.push(btn);
+  });
+
+  nav.appendChild(groupEl);
+});
+
+function selectItem(item, btn){
+  buttons.forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const encodedPath = item.file.split('/').map(encodeURIComponent).join('/');
+
+  topbarTitle.innerHTML = '<button class="menu-toggle" id="menuToggle2" aria-label="メニュー">&#9776; 一覧</button>' +
+    '<span class="kicker">' + item.emoji + ' 選択中</span>' + item.label;
+  document.getElementById('menuToggle2').addEventListener('click', toggleSidebar);
+
+  openNewTab.href = encodedPath;
+
+  if (emptyState) { emptyState.remove(); }
+  if (!iframe){
+    iframe = document.createElement('iframe');
+    viewer.appendChild(iframe);
+  }
+  iframe.src = encodedPath;
+
+  document.title = item.label + ' | WCCC';
+  closeSidebar();
+}
+
+function toggleSidebar(){
+  sidebar.classList.toggle('open');
+  overlay.classList.toggle('open');
+}
+function closeSidebar(){
+  sidebar.classList.remove('open');
+  overlay.classList.remove('open');
+}
+
+menuToggle.addEventListener('click', toggleSidebar);
+overlay.addEventListener('click', closeSidebar);
+
+// 初期表示: 最初の項目を自動選択
+if (groups.length && groups[0].items.length){
+  selectItem(groups[0].items[0], buttons[0]);
+}
+</script>
+</body>
+</html>

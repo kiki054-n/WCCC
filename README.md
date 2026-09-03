@@ -1,11 +1,11 @@
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22276324.svg)](https://doi.org/10.5281/zenodo.22276324)
+
+
 
 
 # 🌍 WCCC – World Contribution Circulation Council
 ### International Standard Proposal for AI Safety, Contribution Circulation, and Fair Knowledge Flow
-
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22276324.svg)](https://doi.org/10.5281/zenodo.22276324)
-
 
 WCCC is an open, international initiative proposing a new global model for  
 **AI Safety**, **Contribution Circulation**, and **Non‑hegemonic AI Governance**.

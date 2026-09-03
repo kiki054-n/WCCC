@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "WCCC — World Contribution Circulation Council"
+abstract: >-
+  An international standard proposal for AI safety, contribution circulation,
+  and non-hegemonic AI governance. Includes the record-layer design: a
+  two-layer ledger in which contribution records generate no claims, and
+  claims, where they exist, carry a declared terminus.
+type: software
+authors:
+  - family-names: Kawakami
+    given-names: Naoyuki
+    alias: kiki054-n
+    orcid: "https://orcid.org/0009-0009-2972-6511"
+    country: JP
+repository-code: "https://github.com/kiki054-n/WCCC"
+url: "https://kiki054-n.github.io/WCCC/"
+keywords:
+  - contribution circulation
+  - AI governance
+  - non-hegemonic
+  - provenance
+  - gratitude ledger
+  - ss9co
+# ---------------------------------------------------------------
+# license: SPDX 識別子を1つ書いてください。
+#   コードと文章で分ける場合は、この行はコード側に合わせ、
+#   文章側のライセンスは LICENSE-CONTENT.md に記載してください。
+#   例: MIT / CC-BY-4.0 / CC-BY-NC-SA-4.0
+# ---------------------------------------------------------------
+license: MIT

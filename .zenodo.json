@@ -1,0 +1,30 @@
+{
+  "title": "WCCC — World Contribution Circulation Council",
+  "upload_type": "software",
+  "description": "<p>An international standard proposal for AI safety, contribution circulation, and non-hegemonic AI governance.</p><p>Includes <strong>RECORD-LAYER.md</strong>: a two-layer ledger design in which the record layer registers who contributed what and when but generates <em>no claims</em>, while claims — where they exist at all — live in a separate settlement layer and must carry a declared terminus. Contains the withdrawal-invariance criterion (a transfer is a ladder only if the giver can withdraw without reducing the receiver's option set) and its four observable indicators: portability, reproducibility, exit symmetry, declared terminus.</p>",
+  "creators": [
+    {
+      "name": "Kawakami, Naoyuki",
+      "orcid": "0009-0009-2972-6511"
+    }
+  ],
+  "keywords": [
+    "contribution circulation",
+    "AI governance",
+    "non-hegemonic",
+    "provenance",
+    "gratitude ledger",
+    "withdrawal invariance",
+    "ss9co"
+  ],
+  "language": "jpn",
+  "access_right": "open",
+  "license": "MIT",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/kiki054-n/WCCC",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22276324.svg)](https://doi.org/10.5281/zenodo.22276324)
 
-
+📐 [記録層の設計 — 二層台帳と非請求権条件](./RECORD-LAYER.md)
 
 
 # 🌍 WCCC – World Contribution Circulation Council

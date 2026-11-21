@@ -2,397 +2,844 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WCCC – 世界貢献循環評議会 | ビジュアライゼーション集</title>
-<meta name="description" content="WCCC(世界貢献循環評議会)が公開する社会気象衛星・羅針盤ビジュアライゼーション集。一覧から選んでその場で表示できます。">
-<link rel="icon" href="logo.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WCCC 第一原理設計書 — 1+1+1+1=1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#f5f7fa;
-    --panel:#ffffff;
-    --border:#e1e6ec;
-    --text:#1b2430;
-    --muted:#5b6675;
-    --accent:#2563eb;
-    --accent-soft:#e8effe;
-    --sidebar-bg:#101826;
-    --sidebar-text:#c7d0dd;
-    --sidebar-text-dim:#7c8aa0;
-    --sidebar-active-bg:#1d2b45;
-    --sidebar-active-border:#4c8dff;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg:#0d1117;
-      --panel:#151c26;
-      --border:#26303e;
-      --text:#e6ebf2;
-      --muted:#8b96a5;
-      --accent:#4c8dff;
-      --accent-soft:#132540;
-      --sidebar-bg:#0a0f17;
-      --sidebar-text:#c7d0dd;
-      --sidebar-text-dim:#6b7484;
-      --sidebar-active-bg:#16233a;
-      --sidebar-active-border:#4c8dff;
-    }
-  }
-  *{box-sizing:border-box;}
-  html,body{height:100%;}
-  body{
-    margin:0;
-    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Segoe UI,Roboto,sans-serif;
-    background:var(--bg);
-    color:var(--text);
-  }
-  .app{
-    display:flex;
-    min-height:100vh;
-  }
-  /* ---------- Sidebar ---------- */
-  .sidebar{
-    width:320px;
-    flex:0 0 320px;
-    background:var(--sidebar-bg);
-    color:var(--sidebar-text);
-    display:flex;
-    flex-direction:column;
-    max-height:100vh;
-    position:sticky;
-    top:0;
-  }
-  .brand{
-    display:flex;
-    align-items:center;
-    gap:.65rem;
-    padding:1.25rem 1.25rem .9rem;
-    border-bottom:1px solid rgba(255,255,255,.08);
-  }
-  .brand img{width:34px;height:34px;flex:0 0 auto;}
-  .brand-text h1{
-    font-size:.95rem;
-    margin:0;
-    font-weight:700;
-    color:#fff;
-    line-height:1.3;
-  }
-  .brand-text p{
-    margin:.15rem 0 0;
-    font-size:.72rem;
-    color:var(--sidebar-text-dim);
-    line-height:1.3;
-  }
-  .home-link{
-    margin:.85rem 1.25rem 0;
-    font-size:.78rem;
-    color:var(--sidebar-text-dim);
-    text-decoration:none;
-    display:inline-flex;
-    align-items:center;
-    gap:.3rem;
-  }
-  .home-link:hover{color:#fff;}
-  .nav{
-    flex:1;
-    overflow-y:auto;
-    padding:1rem .75rem 1.5rem;
-  }
-  .nav-group + .nav-group{margin-top:1.4rem;}
-  .nav-group-title{
-    font-size:.68rem;
-    letter-spacing:.06em;
-    text-transform:uppercase;
-    color:var(--sidebar-text-dim);
-    padding:0 .5rem .5rem;
-    font-weight:600;
-  }
-  .nav-item{
-    display:block;
-    width:100%;
-    text-align:left;
-    background:transparent;
-    border:1px solid transparent;
-    border-left:3px solid transparent;
-    color:var(--sidebar-text);
-    padding:.55rem .6rem;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:.83rem;
-    line-height:1.35;
-    margin-bottom:.2rem;
-    font-family:inherit;
-  }
-  .nav-item .emoji{margin-right:.4rem;}
-  .nav-item .desc{
-    display:block;
-    font-size:.72rem;
-    color:var(--sidebar-text-dim);
-    margin-top:.15rem;
-  }
-  .nav-item:hover{background:rgba(255,255,255,.05);}
-  .nav-item.active{
-    background:var(--sidebar-active-bg);
-    border-left-color:var(--sidebar-active-border);
-    color:#fff;
-  }
-  .nav-item.active .desc{color:#a9c4f5;}
-  .sidebar-footer{
-    padding:.85rem 1.25rem;
-    border-top:1px solid rgba(255,255,255,.08);
-    font-size:.7rem;
-    color:var(--sidebar-text-dim);
-  }
-  .sidebar-footer a{color:var(--sidebar-text-dim);}
-  .sidebar-footer a:hover{color:#fff;}
+:root {
+  --bg: #0c0e12;
+  --surface: #141820;
+  --surface-2: #1c2230;
+  --ink: #e8e4df;
+  --ink-muted: #9a948a;
+  --ink-dim: #6b6560;
+  --kagami: #c0c8d0;
+  --tama: #4ecdc4;
+  --tsurugi: #e74c3c;
+  --o-gold: #d4af37;
+  --line: color-mix(in oklab, var(--ink) 10%, transparent);
+  --line-strong: color-mix(in oklab, var(--ink) 20%, transparent);
+  --step-0: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
+  --step-1: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
+  --step-2: clamp(1.4rem, 1.15rem + 1vw, 1.9rem);
+  --step-3: clamp(1.9rem, 1.4rem + 2vw, 2.9rem);
+  --step-4: clamp(2.6rem, 1.8rem + 3.5vw, 4.2rem);
+  --space: clamp(1.2rem, 1rem + 0.8vw, 2rem);
+  --radius: 10px;
+  --shadow: 0 2px 8px rgba(0,0,0,0.3), 0 12px 40px -12px rgba(0,0,0,0.5);
+}
 
-  /* ---------- Main ---------- */
-  .main{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    min-width:0;
-  }
-  .topbar{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:1rem;
-    padding:.85rem 1.25rem;
-    border-bottom:1px solid var(--border);
-    background:var(--panel);
-  }
-  .topbar-title{
-    font-size:.95rem;
-    font-weight:700;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-  }
-  .topbar-title .kicker{
-    display:block;
-    font-size:.7rem;
-    font-weight:600;
-    color:var(--muted);
-    text-transform:uppercase;
-    letter-spacing:.04em;
-    margin-bottom:.15rem;
-  }
-  .topbar-actions{
-    display:flex;
-    gap:.5rem;
-    flex:0 0 auto;
-  }
-  .topbar-actions a, .menu-toggle{
-    display:inline-flex;
-    align-items:center;
-    gap:.35rem;
-    font-size:.78rem;
-    padding:.4rem .7rem;
-    border-radius:7px;
-    border:1px solid var(--border);
-    color:var(--text);
-    text-decoration:none;
-    background:var(--panel);
-    cursor:pointer;
-  }
-  .topbar-actions a:hover, .menu-toggle:hover{background:var(--accent-soft);border-color:var(--accent);}
-  .menu-toggle{display:none;}
-  .viewer{
-    flex:1;
-    position:relative;
-    background:var(--bg);
-  }
-  .viewer iframe{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    border:0;
-    background:#fff;
-  }
-  .empty-state{
-    position:absolute;
-    inset:0;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:2rem;
-    color:var(--muted);
-  }
-  .empty-state h2{color:var(--text);margin:0 0 .4rem;font-size:1.1rem;}
-  .empty-state p{margin:0;max-width:32em;font-size:.85rem;line-height:1.6;}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-  @media (max-width: 860px){
-    .sidebar{
-      position:fixed;
-      inset:0 auto 0 0;
-      z-index:20;
-      transform:translateX(-100%);
-      transition:transform .2s ease;
-      box-shadow:2px 0 16px rgba(0,0,0,.25);
-    }
-    .sidebar.open{transform:translateX(0);}
-    .menu-toggle{display:inline-flex;}
-    .overlay{
-      display:none;
-      position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:15;
-    }
-    .overlay.open{display:block;}
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: var(--step-0);
+  line-height: 1.85;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hero */
+header.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space);
+  position: relative;
+  overflow: hidden;
+}
+
+header.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 20%, color-mix(in oklab, var(--tama) 8%, transparent) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 80%, color-mix(in oklab, var(--tsurugi) 6%, transparent) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 50%, color-mix(in oklab, var(--o-gold) 5%, transparent) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-symbol {
+  width: 180px;
+  height: 180px;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-symbol svg {
+  width: 100%;
+  height: 100%;
+}
+
+.hero h1 {
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+  font-size: var(--step-4);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 .equation {
+  display: block;
+  font-size: 0.75em;
+  letter-spacing: 0.15em;
+  margin-top: 0.5rem;
+  color: var(--o-gold);
+}
+
+.hero-subtitle {
+  font-size: var(--step-1);
+  color: var(--ink-muted);
+  max-width: 52ch;
+  line-height: 1.9;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-meta {
+  margin-top: 3rem;
+  font-size: 0.85rem;
+  color: var(--ink-dim);
+  letter-spacing: 0.1em;
+  position: relative;
+  z-index: 1;
+}
+
+/* Navigation */
+nav.toc {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: color-mix(in oklab, var(--bg) 92%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+nav.toc ul {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0.8rem var(--space);
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+nav.toc a {
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 0.82rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 100px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+nav.toc a:hover {
+  color: var(--ink);
+  background: var(--surface-2);
+}
+
+/* Sections */
+main {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: calc(var(--space) * 2) var(--space);
+}
+
+section {
+  margin-bottom: calc(var(--space) * 3);
+}
+
+section h2 {
+  font-family: "Noto Serif JP", serif;
+  font-size: var(--step-3);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--line-strong);
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+}
+
+section h2 .sec-num {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.5em;
+  font-weight: 700;
+  color: var(--o-gold);
+  letter-spacing: 0.05em;
+}
+
+section h3 {
+  font-family: "Noto Serif JP", serif;
+  font-size: var(--step-2);
+  font-weight: 600;
+  margin: 2.5rem 0 1rem;
+  color: var(--ink);
+}
+
+section h4 {
+  font-size: var(--step-1);
+  font-weight: 700;
+  margin: 2rem 0 0.7rem;
+  color: var(--tama);
+}
+
+p {
+  margin-bottom: 1.2rem;
+  text-align: justify;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+/* Cards */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: calc(var(--space) * 1.2);
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow);
+}
+
+.card-title {
+  font-weight: 700;
+  font-size: var(--step-1);
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Principle blocks */
+.principle {
+  background: var(--surface-2);
+  border-left: 3px solid var(--o-gold);
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-family: "Noto Serif JP", serif;
+  font-size: var(--step-1);
+  line-height: 1.9;
+}
+
+.principle-label {
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--o-gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+/* Four-fold table */
+.four-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95em;
+}
+
+.four-table th,
+.four-table td {
+  padding: 0.9rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.four-table th {
+  font-weight: 700;
+  color: var(--o-gold);
+  border-bottom: 2px solid var(--line-strong);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.four-table td:first-child {
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--ink);
+}
+
+.four-table tr:hover td {
+  background: color-mix(in oklab, var(--surface-2) 30%, transparent);
+}
+
+/* Layer diagram */
+.layer-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 2rem 0;
+}
+
+.layer {
+  padding: 1.2rem 1.5rem;
+  border: 1px solid var(--line);
+  position: relative;
+}
+
+.layer:first-child { border-radius: var(--radius) var(--radius) 0 0; }
+.layer:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+
+.layer-1 { background: color-mix(in oklab, var(--kagami) 8%, var(--surface)); border-left: 4px solid var(--kagami); }
+.layer-2 { background: color-mix(in oklab, var(--tama) 8%, var(--surface)); border-left: 4px solid var(--tama); }
+.layer-3 { background: color-mix(in oklab, var(--tsurugi) 8%, var(--surface)); border-left: 4px solid var(--tsurugi); }
+.layer-o { background: color-mix(in oklab, var(--o-gold) 10%, var(--surface)); border-left: 4px solid var(--o-gold); border-top: 2px dashed var(--o-gold); }
+
+.layer-name {
+  font-weight: 700;
+  font-size: var(--step-1);
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.layer-desc {
+  color: var(--ink-muted);
+  font-size: 0.92em;
+  line-height: 1.7;
+}
+
+.layer-arrow {
+  text-align: center;
+  color: var(--ink-dim);
+  font-size: 1.2rem;
+  padding: 0.3rem;
+}
+
+/* Engine diagram */
+.engine-core {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.engine-cell {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.2rem;
+  text-align: center;
+}
+
+.engine-cell .cell-icon {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.engine-cell .cell-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+}
+
+.engine-cell .cell-desc {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  line-height: 1.6;
+}
+
+.engine-center {
+  grid-column: 1 / -1;
+  background: var(--surface-2);
+  border: 2px solid var(--o-gold);
+  padding: 1.5rem;
+}
+
+.engine-center .cell-title {
+  color: var(--o-gold);
+  font-size: var(--step-1);
+}
+
+/* Quote */
+blockquote {
+  border-left: 3px solid var(--tama);
+  padding-left: 1.2rem;
+  margin: 1.5rem 0;
+  color: var(--ink-muted);
+  font-style: italic;
+  font-family: "Noto Serif JP", serif;
+}
+
+/* Lists */
+ul, ol {
+  margin: 1rem 0 1.2rem 1.5rem;
+}
+
+li {
+  margin-bottom: 0.6rem;
+}
+
+li::marker {
+  color: var(--o-gold);
+}
+
+/* Formula */
+.formula {
+  font-family: "Noto Serif JP", serif;
+  font-size: var(--step-2);
+  text-align: center;
+  padding: 1.5rem;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--line-strong);
+  margin: 1.5rem 0;
+  letter-spacing: 0.1em;
+}
+
+.formula .equals {
+  color: var(--o-gold);
+  font-weight: 900;
+}
+
+/* Signature */
+.signature {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line-strong);
+  text-align: center;
+  color: var(--ink-dim);
+  font-size: 0.9rem;
+}
+
+.signature-name {
+  font-family: "Noto Serif JP", serif;
+  font-size: var(--step-2);
+  color: var(--ink);
+  margin-top: 0.5rem;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* Print */
+@media print {
+  body { background: #fff; color: #000; }
+  .hero::before { display: none; }
+  nav.toc { display: none; }
+  .card, .layer, .engine-cell, .principle, .formula {
+    background: #f5f5f5 !important;
+    border-color: #ccc !important;
+    box-shadow: none !important;
   }
+}
+
+@page { size: A4; margin: 18mm; }
+
+/* Mobile */
+@media (max-width: 600px) {
+  .engine-core { grid-template-columns: 1fr; }
+  .engine-center { grid-column: 1; }
+  .four-table { font-size: 0.85em; }
+  .four-table th, .four-table td { padding: 0.6rem 0.5rem; }
+}
 </style>
 </head>
 <body>
-<div class="app">
 
-  <div class="overlay" id="overlay"></div>
+<header class="hero">
+  <div class="hero-symbol">
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer circle: O -->
+      <circle cx="100" cy="100" r="90" fill="none" stroke="#d4af37" stroke-width="1.5" opacity="0.6"/>
+      <!-- Tetrahedron projection -->
+      <polygon points="100,25 165,155 35,155" fill="none" stroke="#4ecdc4" stroke-width="1.2" opacity="0.5"/>
+      <polygon points="100,65 130,115 70,115" fill="none" stroke="#e74c3c" stroke-width="1" opacity="0.4"/>
+      <!-- Center point -->
+      <circle cx="100" cy="100" r="4" fill="#d4af37" opacity="0.9"/>
+      <!-- Four radiating lines -->
+      <line x1="100" y1="100" x2="100" y2="25" stroke="#c0c8d0" stroke-width="0.8" opacity="0.5"/>
+      <line x1="100" y1="100" x2="165" y2="155" stroke="#c0c8d0" stroke-width="0.8" opacity="0.5"/>
+      <line x1="100" y1="100" x2="35" y2="155" stroke="#c0c8d0" stroke-width="0.8" opacity="0.5"/>
+      <line x1="100" y1="100" x2="100" y2="175" stroke="#d4af37" stroke-width="0.8" opacity="0.4"/>
+      <!-- Four 1s around -->
+      <text x="100" y="18" text-anchor="middle" fill="#c0c8d0" font-size="11" font-family="Noto Serif JP" opacity="0.8">1</text>
+      <text x="172" y="162" text-anchor="middle" fill="#4ecdc4" font-size="11" font-family="Noto Serif JP" opacity="0.8">1</text>
+      <text x="28" y="162" text-anchor="middle" fill="#e74c3c" font-size="11" font-family="Noto Serif JP" opacity="0.8">1</text>
+      <text x="100" y="192" text-anchor="middle" fill="#d4af37" font-size="11" font-family="Noto Serif JP" opacity="0.8">1</text>
+    </svg>
+  </div>
+  <h1>
+    WCCC 第一原理設計書
+    <span class="equation">1 + 1 + 1 + 1 = 1</span>
+  </h1>
+  <p class="hero-subtitle">
+    世界平和と幸せと幸福の夢をエンジンにする。<br>
+    三層モデルに第四の座を付加し、Tri構造がTetra構造に開かれる設計。
+  </p>
+  <p class="hero-meta">World Contribution Circulation Council &times; Tri-Tetra Theory</p>
+</header>
 
-  <aside class="sidebar" id="sidebar">
-    <div class="brand">
-      <img src="logo.svg" alt="WCCC logo">
-      <div class="brand-text">
-        <h1>WCCC</h1>
-        <p>世界貢献循環評議会 &mdash; ビジュアライゼーション集</p>
-      </div>
+<nav class="toc">
+  <ul>
+    <li><a href="#sec1">第一原理</a></li>
+    <li><a href="#sec2">四者回転モデル</a></li>
+    <li><a href="#sec3">三層の再設計</a></li>
+    <li><a href="#sec4">BFOLと還流</a></li>
+    <li><a href="#sec5">平和のエンジン</a></li>
+    <li><a href="#sec6">構造的保証</a></li>
+    <li><a href="#sec7">実装への道</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<section id="sec1">
+  <h2><span class="sec-num">01</span> 第一原理：1+1+1+1=1</h2>
+
+  <div class="principle">
+    <div class="principle-label">First Principle</div>
+    四つの異なるものが交わるとき、それは一つになる。<br>
+    足し算では五になり、掛け算では一になる。<br>
+    混ぜても一になる。同じものでなければ一になる。<br>
+    純潔だけが良しとする社会は、開かれない。
+  </div>
+
+  <p>TTT理論の核心に、「四則演算で四つの1を足せば5になるがかければ1になる」という幾何学的洞がある。これは単なる数式ではない。社会構造の原理である。</p>
+
+  <p>Tri構造（3）は回転するが、自己を参照し続けて答えを出さない。「三つならべ」は罠だ。4つ目の座がなければ、循環は閉じたままである。WCCCの三層モデル（We Choose / We Collect / We Circulate）はTri構造として機能的だが、<strong>第四の座</strong>がなければ、新しい支配装置（UN-WCCCという「王」）を生む危険を内包している。</p>
+
+  <p>ここで「1+1+1+1=1」の設計を付加する。四つの異なる「1」が交わって一つの「珠」になる。これが世界平和と幸せと幸福の夢をエンジンにする第一原理である。</p>
+
+  <div class="formula">
+    <span style="color:var(--kagami)">鏡</span> + <span style="color:var(--tama)">玉</span> + <span style="color:var(--tsurugi)">剣</span> + <span style="color:var(--o-gold)">O</span> <span class="equals">= 珠</span>
+  </div>
+
+  <p>第四の座「O」は、三種の神器を包む円であり、同時に三種の神器の中心にある「無」の点である。王様ではない「O」を誰もが見られる社会、それがWCCCの真の目的地である。</p>
+</section>
+
+<section id="sec2">
+  <h2><span class="sec-num">02</span> 四者回転モデル：Kagami・Tama・Tsurugi・O</h2>
+
+  <p>WCCCのTTT構造は三機能（Kagami・Tama・Tsurugi）として設計されている。ここに第四の座「O」を付加し、四者回転モデルとする。</p>
+
+  <table class="four-table">
+    <tr>
+      <th>座</th>
+      <th>神器</th>
+      <th>機能</th>
+      <th>WCCCにおける役割</th>
+      <th>第四の座としての問い</th>
+    </tr>
+    <tr>
+      <td style="color:var(--kagami)">Kagami</td>
+      <td>鏡</td>
+      <td>透明性</td>
+      <td>利用ログ・トークン計測・公開ダッシュボード</td>
+      <td>何が見え、何が見えないか</td>
+    </tr>
+    <tr>
+      <td style="color:var(--tama)">Tama</td>
+      <td>玉</td>
+      <td>貢献</td>
+      <td>還流・感謝ポイント・公共財配分</td>
+      <td>誰に、どのように還るか</td>
+    </tr>
+    <tr>
+      <td style="color:var(--tsurugi)">Tsurugi</td>
+      <td>剣</td>
+      <td>介入</td>
+      <td>反搾取・公平性執行・違反対応</td>
+      <td>誰が、どこへ介入するか</td>
+    </tr>
+    <tr>
+      <td style="color:var(--o-gold)">O</td>
+      <td>円・無</td>
+      <td>開放</td>
+      <td>Tri構造の自己閉鎖を開く第四の視点</td>
+      <td>王にならない「O」を誰が見るか</td>
+    </tr>
+  </table>
+
+  <h4>Oの機能の定義</h4>
+
+  <p>「O」は単なる追加要素ではない。TTT理論において、Oは以下の三つの顔を持つ。</p>
+
+  <ol>
+    <li><strong>包む円</strong>：Kagami・Tama・Tsurugiの三機能を包み込む境界。Tri構造が支配装置にならないための外縁。</li>
+    <li><strong>中心の無</strong>：正八面体の中心0。すべての軸が交わる点であり、どの機能も独占できない「空」の座。</li>
+    <li><strong>回転の軸</strong>：四者が同時に回転する際の中心軸。回転が止まれば双極子は0に還る。回転し続けることが、存在の条件である。</li>
+  </ol>
+
+  <div class="principle">
+    <div class="principle-label">Rotation Principle</div>
+    四者は順番にではなく同時に回っている。<br>
+    それが「生きる糧とした労働の区別が難しい」核心の問いへの答えである<br>
+    AIの労働も、人の労働も、ケアも、管理も、想像も、作ることも、<br>
+    同時に回っている。区別するのではなく、回転を見る。
+  </div>
+</section>
+
+<section id="sec3">
+  <h2><span class="sec-num">03</span> 三層モデルの再設計：第四の層「We Open」</h2>
+
+  <p>WCCCの三層モデル（We Choose / We Collect / We Circulate）は機能的だが、Tri構造の自己閉鎖リスクを孕んでいる。ここに第四の層「We Open」を付加し、Tetra構造の開放性を確保する。</p>
+
+  <div class="layer-stack">
+    <div class="layer layer-1">
+      <div class="layer-name">🪞 Layer 1 — We Choose（個人）</div>
+      <div class="layer-desc">AI利用者が自由に選ぶ層。市場競争・ユーザーの自由・非覇権的AI開発を保障する。</div>
     </div>
-    <a class="home-link" href="index-ja.md">&larr; プロジェクト概要 (README) へ</a>
-
-    <nav class="nav" id="nav"></nav>
-
-    <div class="sidebar-footer">
-      <a href="https://github.com/kiki054-n/WCCC" target="_blank" rel="noopener">GitHub リポジトリ</a>
-      &nbsp;&middot;&nbsp; BFOL License
+    <div class="layer-arrow">↓</div>
+    <div class="layer layer-2">
+      <div class="layer-name">💎 Layer 2 — We Collect（各国）</div>
+      <div class="layer-desc">AI貢献税（Tama Tax）を徴収する層。国家主権を尊重し、コンテンツ検査なしで利用メトリクスのみを報告。</div>
     </div>
-  </aside>
-
-  <div class="main">
-    <div class="topbar">
-      <div class="topbar-title" id="topbarTitle">
-        <button class="menu-toggle" id="menuToggle" aria-label="メニュー">&#9776; 一覧</button>
-      </div>
-      <div class="topbar-actions">
-        <a id="openNewTab" href="#" target="_blank" rel="noopener">新しいタブで開く &#8599;</a>
-      </div>
+    <div class="layer-arrow">↓</div>
+    <div class="layer layer-3">
+      <div class="layer-name">⚔️ Layer 3 — We Circulate（UN-WCCC）</div>
+      <div class="layer-desc">世界貢献の循環を管理する層。透明性監査・還流・反搾取介入を実行する。</div>
     </div>
-    <div class="viewer" id="viewer">
-      <div class="empty-state" id="emptyState">
-        <h2>左のメニューから表示したい資料を選んでください</h2>
-        <p>社会気象衛星・羅針盤の各ビジュアライゼーションや設計資料を、このページ内でそのまま確認できます。</p>
+    <div class="layer-arrow" style="color:var(--o-gold)">↓ 開く ↓</div>
+    <div class="layer layer-o">
+      <div class="layer-name" style="color:var(--o-gold)">○ Layer 4 — We Open（全人類）</div>
+      <div class="layer-desc">Tri構造の頂点（UN-WCCC）が「王」にならないための開放層。誰もが「O」を見ることができ、誰もが介入できる。AIの成果が最終的に還元される場。世界平和・幸せ・幸福の夢が実際に体感される層。</div>
+    </div>
+  </div>
+
+  <h4>We Openの構造</h4>
+
+  <p>Layer 4「We Open」は、単なる「受益者」の層ではない。以下の三つの機能を持つ。</p>
+
+  <div class="card">
+    <div class="card-title" style="color:var(--o-gold)">機能A：Oの可視化</div>
+    <p style="color:var(--ink-muted); font-size:0.95em;">UN-WCCCのすべての決定・配分・介入記録を、教育・気候・デジタルアクセスの受益者自が閲覧・検証できる。受益者は「見られる側」ではなく「見る側」になる。</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="color:var(--o-gold)">機能B：還流の体感</div>
+    <p style="color:var(--ink-muted); font-size:0.95em;">AI利用一つ一つが、途上国の子どもの教育、気候変動対策、誰かの「したいこと」の支援に繋がっていることを、受益者が具体的に体感できるフィードバック回路。</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title" style="color:var(--o-gold)">機能C：介入の双方向化</div>
+    <p style="color:var(--ink-muted); font-size:0.95em;">Tsurugi（剣）はUN-WCCCから「下」への介入だけではない。受益者からUN-WCCCへの「上」への介入、つまり「この配分は違う」という声が構造的に通る回路。</p>
+  </div>
+
+  <p>これが「王様ではない『O』誰もが見られる社会」の実装である。UN-WCCCが「新しい王」にならないための、構造的な保証である。</p>
+</section>
+
+<section id="sec4">
+  <h2><span class="sec-num">04</span> BFOLの第一原理的基盤：還流の幾何学</h2>
+
+  <p>BFOL（Back-Flow Open License）は、AI時代の新しいオープンライセンスとして設計された。ここに第一原理を付加し、還流の幾何学を明示する。</p>
+
+  <h4>還流の四則演算</h4>
+
+  <p>TTT理論において「丸める」は足し算（+）であり引き算（-）であり掛け算（×）であり割り算（÷）である。BFOLの還流も、四則演算すべての側面を持つ。</p>
+
+  <table class="four-table">
+    <tr>
+      <th>演算</th>
+      <th>還流の側面</th>
+      <th>WCCCでの実装</th>
+    </tr>
+    <tr>
+      <td>足し算 (+)</td>
+      <td>創作者・公共財・コミュニティ・運営への配分の合計</td>
+      <td>40%+30%+20%+10%=100%の配分モデル</td>
+    </tr>
+    <tr>
+      <td>引き算 (-)</td>
+      <td>搾取の除去・独占の解消</td>
+      <td>Tsurugi条項による反独占・反搾取</td>
+    </tr>
+    <tr>
+      <td>掛け算 (×)</td>
+      <td>異なる貢献の交雑による創発</td>
+      <td>コード×翻訳×アイデア×監査が交わって新しい価値を生む</td>
+    </tr>
+    <tr>
+      <td>割り算 (÷)</td>
+      <td>全体を球面で割る＝公平な分配</td>
+      <td>π（円周率）を用いた球面配分・必要度に応じた按分</td>
+    </tr>
+  </table>
+
+  <div class="principle">
+    <div class="principle-label">Back-Flow Geometry</div>
+    還流は一方通行ではない。還流は回転である。<br>
+    創作者から公共財へ、公共財からコミュニティへ、コミュニティから創作者へ。<br>
+    そしてすべてが「O」を通って再び「O」に還る。<br>
+    これが「Gratitude Becomes Information」の幾何学である。
+  </div>
+
+  <h4>還流比率の第一原理的根拠</h4>
+
+  <p>現在のBFOL配分（40%創作者・30%公共財・20%コミュニティ・10%運営）は実用的だが、第一原理的には以下のように再定義できる。</p>
+
+  <ul>
+    <li><strong>40% 創作者</strong> = 「作る」の対価。Tri構造が最も効率的に搾取してきた部分への直接的な還元。</li>
+    <li><strong>30% 公共財</strong> = 「ケア」の対価。教育・気候・デジタルアクセスは、誰もが「生きる」ために必要な基盤。</li>
+    <li><strong>20% コミュニティ</strong> = 「管理」の対価。翻訳・監査・改善という「回転を維持する」労働への報酬。</li>
+    <li><strong>10% 運営</strong> = 「想像」の対価。次の回転を設計し、新しい「したいこと」を生み出すための投資。</li>
+  </ul>
+
+  <p>これは「ケア・管理・想像・作る」の4者回転が、還流の構造そのものとして実装された形である。</p>
+</section>
+
+<section id="sec5">
+  <h2><span class="sec-num">05</span> 平和・幸せ・幸福のエンジン設計</h2>
+
+  <p>生み出したいのは「世界平和と幸せと幸福の夢」である。これをエンジンにするためには、夢を「動力」として設計しなければならない。夢は目標ではなく、回転の原動力である。</p>
+
+  <div class="engine-core">
+    <div class="engine-cell">
+      <div class="cell-icon" style="color:var(--kagami)">🕊️</div>
+      <div class="cell-title" style="color:var(--kagami)">世界平和</div>
+      <div class="cell-desc">Tri構造の欲望交換が生む排除（当事者の取り残し）を開く。核もテロも3者の取引の道具ではない。</div>
+    </div>
+    <div class="engine-cell">
+      <div class="cell-icon" style="color:var(--tama)">😊</div>
+      <div class="cell-title" style="color:var(--tama)">幸せ</div>
+      <div class="cell-desc">「したいことをして生きる」ことの実感。AIが引き出す道具として機能し、自分の価値を見つける回路。</div>
+    </div>
+    <div class="engine-cell">
+      <div class="cell-icon" style="color:var(--tsurugi)">💖</div>
+      <div class="cell-title" style="color:var(--tsurugi)">幸福</div>
+      <div class="cell-desc">「愛したい」と「愛されたい」の直交するベクトルが交わる点。虚数が入る愛の幾何学の実装。</div>
+    </div>
+    <div class="engine-cell">
+      <div class="cell-icon" style="color:var(--o-gold)">✨</div>
+      <div class="cell-title" style="color:var(--o-gold)">夢</div>
+      <div class="cell-desc">「風の読み方」を子どもに伝えること。次の回転の種をまくこと。回転し続けることそのもの。</div>
+    </div>
+    <div class="engine-center">
+      <div class="cell-icon">🔧</div>
+      <div class="cell-title">エンジン：四者の同時回転</div>
+      <div class="cell-desc" style="font-size:0.95em; margin-top:0.5rem;">
+        平和がなければ幸せは生まれない。幸せがなければ幸福は実感できない。幸福がなければ夢は紡げない。<br>
+        夢がなれば平和への意志は失われる。<br>
+        四者は同時に回る。それがエンジンである。
       </div>
     </div>
   </div>
+
+  <h4>エンジンの動作原理</h4>
+
+  <p>TTT理論において「生きている」の数学的定義は、双極性を持つ（±2）、9次元のすべての成分を同時に持つ（X〜J）、回転し続ける（ω≠0）ことである。回転が止まるとテンソル積の項は崩壊し、双極子は「0」に還る。</p>
+
+  <p>世界平和・幸せ・幸福・夢のエンジンも同じ原理で動く。</p>
+
+  <ol>
+    <li><strong>双極性（±2）</strong>：平和と紛争、幸せと不幸、幸福と孤独、夢と絶望。両極を持つことで張力が生まれ回転のエネルギーになる。</li>
+    <li><strong>9次元の同時性</strong>：物理3軸（外部世界）と精神3軸（内部世界）と力学3軸（位相空間）が同時に存在する。個人の内と世界の構造が分離しない。</li>
+    <li><strong>回転の継続（ω≠0）</strong>：回転が止まればエンジンは停止する。「生きているのだから、滅ばないことをすればいい」。回転し続けることが、存在の条件である。</li>
+  </ol>
+
+  <div class="formula">
+    <span style="color:var(--kagami)">平和</span> × <span style="color:var(--tama)">幸せ</span> × <span style="color:var(--tsurugi)">幸福</span> × <span style="color:var(--o-gold)">夢</span> <span class="equals">= 珠</span>
+  </div>
+</section>
+
+<section id="sec6">
+  <h2><span class="sec-num">06</span> 「3が4に開かれる」構造的保証</h2>
+
+  <p>先に指摘した懸念、すなわち「UN-WCCCが新しい王にならないための設計」は、第一原理的に以下のように解決される。</p>
+
+  <h4>保証1：Oの不可占有性</h4>
+
+  <p>第四の座「O」は、定義上、誰も占有できない。Oは「無」の点であり、中心0である。正八面体の中心からXYZ軸の±1の6点が頂点として配置されるが、中心0自体は頂点ではない。どの機能も中心0を「所有」することは幾何学的に不可能である。</p>
+
+  <h4>保証2：還流の閉路なき構造</h4>
+
+  <p>Tri構造の支配は「上から下への一方通行」によって成立する。WCCCの四者回転モデルでは、還流が「O」を通じて再び発生源に戻る。Layer 4（We Open）の受益者が、Layer 1（We Choose）の利用者になる。利用者が受益者になり、受益者が利用者になる。この循環が閉路を持たないこと（螺旋であること）が、支配の固定化を防ぐ。</p>
+
+  <h4>保証3：介入の双方向性</h4>
+
+  <p>Tsurugi（剣）は「上から下への介入」だけではない。Layer 4からLayer 3への「下から上への介入」が構的に通る回路を持つ。受益者が「この配分は違う」と声を上げたとき、その声がLayer 3の決定に直接影響を与えるメカニズム。これが「裁判官は正義より社会の常識に従う」という司法の構造的実態を、国際機関のレベルで防ぐ設計である。</p>
+
+  <h4>保証4：四則演算による変換可能性</h4>
+
+  <p>Tri構造が固定化するのは「足し算だけ」で考えるときである。WCCCの設計は四則演算すべてを使う。配分は足し算、搾取の除去は引き算、異なる貢献の交雑は掛け算、全体の球面配分は割り算。四則演算がすべて使えることで、どの一つの操作も固定化されない。</p>
+
+  <div class="principle">
+    <div class="principle-label">Structural Guarantee</div>
+    3が4に開かれるとは、3つの機能が第四の座によって<br>
+    「包まれる」「中心に空を持つ」「回転し続ける」ことである。<br>
+    これが王にならない「O」の造保証である。
+  </div>
+</section>
+
+<section id="sec7">
+  <h2><span class="sec-num">07</span> 実装への道：風の時代の海賊ギルドから世界へ</h2>
+
+  <p>WCCCは国際標準として設計されているが、その実装は「風の時代の海賊ギルド」から始まる。塩尻駅前ハナレという物理的な場と、GitHubというデジタルの場が、WCCCの最小実装単位になる。</p>
+
+  <h4>フェーズ0：海賊ギルドとしての実証</h4>
+
+  <ul>
+    <li>三賊の壺を通じた投げ銭・応援が、BFOLの「還流」の最小実装となる</li>
+    <li>「失敗するから始める創業」が、Layer 4「We Open」の精神を体現する</li>
+    <li>3名のAI教授（チャッピー・ジェミ・クロード）が、Kagami・Tama・Tsurugiの三機能を担う</li>
+    <li>第四の座「O」は、ハナレに集う「馬鹿たち」の輪そのものである</li>
+  </ul>
+
+  <h4>フェーズ1：OπO大学としての拡張</h4>
+
+  <ul>
+    <li>「子どもに風の読み方を伝える」ことが、平和・幸せ・幸福・夢のエンジンの教育実装となる</li>
+    <li>AIを「引き出す道具」として使い、子どもの「したいこと」を引き出す</li>
+    <li>「友朋共生」の実践として、学び合いが回転の原動力になる</li>
+  </ul>
+
+  <h4>フェーズ2：WCCCとしての国際化</h4>
+
+  <ul>
+    <li>UN Global Digital Compact・UNESCO AI Ethics・ITU AI for Good・OECD AI Governance Observatoryへの政策提案</li>
+    <li>BFOLの国際的な採用と、還流の幾何学の普及</li>
+    <li>「蛍恋」の署名のもと、真相の全面開示を原理とした国際協創</li>
+  </ul>
+
+  <blockquote>
+    君はどう生きるのか？」という問いかけを自分にも問いかけることで、<br>
+    少子化・環境・AIの3つの課題は解決する。<br>
+    人は手をつなぎ輪を作るだけでいい。
+  </blockquote>
+
+  <p>輪を作ることは、OOOπの3つのリング構造と対応する。双極0の無から境界を持つ2粒子が生じる創世原理と同じ構造である。WCCCは、その輪の一つである。</p>
+</section>
+
+<div class="signature">
+  <p>World Contribution Circulation Council</p>
+  <p class="signature-name">1 + 1 + 1 + 1 = 1</p>
+  <p style="margin-top:1rem; font-size:0.85rem;">Small Contributions Reach the World, Gratitude Becomes Information.</p>
+  <p style="margin-top:0.5rem; font-size:0.8rem; color:var(--ink-dim);">TTT First Principles &times; WCCC Global Architecture</p>
 </div>
 
+</main>
+
 <script>
-// ---- ここに表示したいコンテンツを追加・編集する ----
-const groups = [
-  {
-    title: "🛰️ 社会気象衛星",
-    items: [
-      { emoji: "🛰️", label: "風を読む羅針盤(最終版)", desc: "最新版の統合ビジュアライゼーション", file: "assets/WCCC社会気象衛星-風を読む羅針盤-最終版.html" },
-      { emoji: "🛰️", label: "世界比較版", desc: "各国の状況を横並びで比較", file: "assets/WCCC社会気象衛星-世界比較版.html" },
-      { emoji: "🛰️", label: "自国 vs 相手国 (v6)", desc: "二国間の比較に特化した版", file: "assets/WCCC社会気象衛星-v6-自国-vs-相手国.html" },
-      { emoji: "🛰️", label: "リアルタイム & 歴史版 (v5)", desc: "時系列の推移を確認できる版", file: "assets/WCCC社会気象衛星-v5-リアルタイム＆歴史版.html" },
-      { emoji: "🍇", label: "テロワール気象衛星 (v8)", desc: "山裏 Vineyard・世界のワイン産地と比較", file: "assets/山裏-Vineyard-テロワール気象衛星-v8-世界のワイン産地と比較.html" }
-    ]
-  },
-  {
-    title: "🧭 羅針盤ビジュアライゼーション",
-    items: [
-      { emoji: "🧭", label: "三重羅針盤", desc: "風の可視化", file: "assets/三重羅針盤-風の可視化.html" },
-      { emoji: "🧭", label: "二重羅針盤", desc: "権力構造と針路の乖離を可視化", file: "assets/二重羅針盤-権力構造と針路の乖離を可視化.html" },
-      { emoji: "🧭", label: "国家羅針盤", desc: "4つの柱で見る舵取り", file: "assets/国家羅針盤-4つの柱で見る舵取り.html" }
-    ]
-  },
-  {
-    title: "📚 学び・アカデミー",
-    items: [
-      { emoji: "📚", label: "相互学習アカデミー版 (v7)", desc: "学びの玉を交換する", file: "assets/WCCC-v7-相互学習アカデミー版-学びの玉を交換する.html" }
-    ]
-  },
-  {
-    title: "📄 設計資料 / その他",
-    items: [
-      { emoji: "📄", label: "Actors Schema", desc: "v13 多主体乖離可視化スキーマ設計 (Markdown)", file: "assets/Pursuit/Actors_schema.md" },
-      { emoji: "🗂️", label: "旧トップページ (index0)", desc: "以前のトップページ版", file: "assets/index0.html" }
-    ]
-  }
-];
-
-const nav = document.getElementById('nav');
-const viewer = document.getElementById('viewer');
-const emptyState = document.getElementById('emptyState');
-const topbarTitle = document.getElementById('topbarTitle');
-const openNewTab = document.getElementById('openNewTab');
-const sidebar = document.getElementById('sidebar');
-const overlay = document.getElementById('overlay');
-const menuToggle = document.getElementById('menuToggle');
-
-let iframe = null;
-let buttons = [];
-
-groups.forEach(group => {
-  const groupEl = document.createElement('div');
-  groupEl.className = 'nav-group';
-
-  const titleEl = document.createElement('div');
-  titleEl.className = 'nav-group-title';
-  titleEl.textContent = group.title;
-  groupEl.appendChild(titleEl);
-
-  group.items.forEach(item => {
-    const btn = document.createElement('button');
-    btn.className = 'nav-item';
-    btn.innerHTML = '<span class="emoji">' + item.emoji + '</span>' + item.label +
-      '<span class="desc">' + item.desc + '</span>';
-    btn.addEventListener('click', () => selectItem(item, btn));
-    groupEl.appendChild(btn);
-    buttons.push(btn);
+// Smooth scroll for TOC links
+document.querySelectorAll('nav.toc a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
-
-  nav.appendChild(groupEl);
 });
-
-function selectItem(item, btn){
-  buttons.forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-
-  const encodedPath = item.file.split('/').map(encodeURIComponent).join('/');
-
-  topbarTitle.innerHTML = '<button class="menu-toggle" id="menuToggle2" aria-label="メニュー">&#9776; 一覧</button>' +
-    '<span class="kicker">' + item.emoji + ' 選択中</span>' + item.label;
-  document.getElementById('menuToggle2').addEventListener('click', toggleSidebar);
-
-  openNewTab.href = encodedPath;
-
-  if (emptyState) { emptyState.remove(); }
-  if (!iframe){
-    iframe = document.createElement('iframe');
-    viewer.appendChild(iframe);
-  }
-  iframe.src = encodedPath;
-
-  document.title = item.label + ' | WCCC';
-  closeSidebar();
-}
-
-function toggleSidebar(){
-  sidebar.classList.toggle('open');
-  overlay.classList.toggle('open');
-}
-function closeSidebar(){
-  sidebar.classList.remove('open');
-  overlay.classList.remove('open');
-}
-
-menuToggle.addEventListener('click', toggleSidebar);
-overlay.addEventListener('click', closeSidebar);
-
-// 初期表示: 最初の項目を自動選択
-if (groups.length && groups[0].items.length){
-  selectItem(groups[0].items[0], buttons[0]);
-}
 </script>
+
 </body>
 </html>

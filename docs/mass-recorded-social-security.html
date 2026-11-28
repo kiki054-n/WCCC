@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>質量記録型会保障：AI・人・Cooperateの協働アーキテクチャ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f4ef;
+  --surface: #fffdfa;
+  --surface-2: #f0ece4;
+  --ink: #1e1b18;
+  --muted: #6b6458;
+  --accent: #b23a2e;
+  --accent-weak: color-mix(in oklab, var(--accent) 10%, var(--surface));
+  --accent-strong: #8f2e24;
+  --secondary: #2d5f7f;
+  --secondary-weak: color-mix(in oklab, var(--secondary) 10%, var(--surface));
+  --line: color-mix(in oklab, var(--ink) 10%, transparent);
+  --line-strong: color-mix(in oklab, var(--ink) 20%, transparent);
+  --step--1: clamp(0.85rem, 0.82rem + 0.15vw, 0.95rem);
+  --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.15rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.5rem);
+  --step-2: clamp(1.6rem, 1.4rem + 1vw, 2.2rem);
+  --step-3: clamp(2.2rem, 1.8rem + 2vw, 3.2rem);
+  --step-4: clamp(2.8rem, 2.2rem + 3vw, 4.5rem);
+  --space: clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);
+  --radius: 8px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px -10px rgba(0,0,0,0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: var(--step-0);
+  line-height: 1.85;
+}
+
+/* Hero */
+header {
+  position: relative;
+  background: var(--ink);
+  color: var(--surface);
+  padding: calc(var(--space) * 3) var(--space) calc(var(--space) * 2.5);
+  overflow: hidden;
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(178,58,46,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  bottom: -30%;
+  left: -5%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(45,95,127,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-eyebrow {
+  font-size: var(--step--1);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--surface) 65%, transparent);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+h1 {
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", serif;
+  font-size: var(--step-4);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.25rem;
+}
+
+.hero-sub {
+  font-size: var(--step-1);
+  color: color-mix(in oklab, var(--surface) 75%, transparent);
+  max-width: 50ch;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* Geometric motif */
+.geo-mark {
+  position: absolute;
+  top: 2rem;
+  right: 3rem;
+  width: 80px;
+  height: 80px;
+  opacity: 0.15;
+}
+
+/* Main */
+main {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: calc(var(--space) * 2) var(--space);
+}
+
+section {
+  margin-bottom: calc(var(--space) * 2.5);
+}
+
+h2 {
+  font-family: "Noto Serif JP", serif;
+  font-size: var(--step-3);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  bottom: 0.3em;
+  width: 4px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+h3 {
+  font-family: "Noto Serif JP", serif;
+  font-size: var(--step-2);
+  font-weight: 600;
+  margin: 2rem 0 1rem;
+  color: var(--ink);
+}
+
+h4 {
+  font-size: var(--step-1);
+  font-weight: 700;
+  margin: 1.5rem 0 0.75rem;
+  color: var(--secondary);
+}
+
+p {
+  margin-bottom: 1.25rem;
+  max-width: 68ch;
+}
+
+.lead {
+  font-size: var(--step-1);
+  color: var(--muted);
+  font-weight: 300;
+  max-width: 60ch;
+  margin-bottom: 2rem;
+}
+
+/* Cards */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 16px 40px -12px rgba(0,0,0,0.15);
+}
+
+.card-label {
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.card h4 {
+  margin-top: 0;
+  color: var(--ink);
+}
+
+.card p {
+  font-size: var(--step--1);
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+/* Role cards with colors */
+.card.ai {
+  border-top: 3px solid var(--secondary);
+}
+
+.card.human {
+  border-top: 3px solid var(--accent);
+}
+
+.card.cooperate {
+  border-top: 3px solid #6b8e23;
+}
+
+.card.ledger {
+  border-top: 3px solid #8b6914;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: var(--step--1);
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+th, td {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+
+th {
+  background: var(--surface-2);
+  font-weight: 700;
+  color: var(--ink);
+  font-size: var(--step--1);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+td:first-child {
+  font-weight: 600;
+  color: var(--secondary);
+  white-space: nowrap;
+}
+
+/* Highlight box */
+.highlight-box {
+  background: var(--secondary-weak);
+  border-left: 4px solid var(--secondary);
+  padding: 1.5rem 1.75rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin: 2rem 0;
+}
+
+.highlight-box.accent {
+  background: var(--accent-weak);
+  border-left-color: var(--accent);
+}
+
+.highlight-box p:last-child {
+  margin-bottom: 0;
+}
+
+/* Flow diagram */
+.flow-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+
+.flow-node {
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: var(--step--1);
+  text-align: center;
+}
+
+.flow-node.ai {
+  background: var(--secondary-weak);
+  color: var(--secondary);
+}
+
+.flow-node.human {
+  background: var(--accent-weak);
+  color: var(--accent-strong);
+}
+
+.flow-node.cooperate {
+  background: color-mix(in oklab, #6b8e23 12%, var(--surface));
+  color: #4a6b19;
+}
+
+.flow-node.ledger {
+  background: color-mix(in oklab, #8b6914 12%, var(--surface));
+  color: #6b5010;
+}
+
+.flow-arrow {
+  color: var(--muted);
+  font-size: 1.25rem;
+}
+
+/* Principle list */
+.principle-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.principle-list li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+  max-width: 65ch;
+}
+
+.principle-list li::before {
+  content: "◆";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 0.7rem;
+  top: 0.35em;
+}
+
+/* Numbered steps */
+.steps {
+  counter-reset: step;
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.steps li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 3rem;
+  margin-bottom: 1.5rem;
+  padding-top: 0.25rem;
+  max-width: 65ch;
+}
+
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2rem;
+  height: 2rem;
+  background: var(--accent);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: var(--step--1);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: calc(var(--space) * 2) var(--space);
+  color: var(--muted);
+  font-size: var(--step--1);
+  border-top: 1px solid var(--line);
+  margin-top: calc(var(--space) * 2);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .flow-container {
+    flex-direction: column;
+  }
+  .flow-arrow {
+    transform: rotate(90deg);
+  }
+  h1 {
+    font-size: var(--step-3);
+  }
+}
+
+@media print {
+  body {
+    background: #fff;
+    font-size: 11pt;
+  }
+  header {
+    background: #1e1b18;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .card, table, .highlight-box {
+    break-inside: avoid;
+  }
+}
+
+@page {
+  size: A4;
+  margin: 18mm;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">TTT Social Architecture</div>
+    <h1>質量記録型社会保障<br>AI・人・Cooperateの協働アーキテクチャ</h1>
+    <p class="hero-sub">AIが記録し、アドバイスを出し、人が命令し、社会がCooperateする。終身雇用が失った「社内共同体」の理想を、社会全体のオープンな知とケアの台帳で実現する。</p>
+  </div>
+  <svg class="geo-mark" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1">
+    <polygon points="50,10 90,30 90,70 50,90 10,70 10,30" opacity="0.5"/>
+    <polygon points="50,20 80,35 80,65 50,80 20,65 20,35" opacity="0.3"/>
+    <line x1="50" y1="10" x2="50" y2="90"/>
+    <line x1="10" y1="30" x2="90" y2="70"/>
+    <line x1="90" y1="30" x2="10" y2="70"/>
+  </svg>
+</header>
+
+<main>
+
+<section>
+  <h2>なぜこのアーキテクチャが必要か</h2>
+  <p class="lead">終身雇用は「ケア・管理・想像・作る」の4者を一企業の中で回していた。しかしその閉じた殻は破れた。現行の社会保障は国家という別の「1」の枠で再分配を試みるが、評価基準が現金の多寡に還元され、ケアや創造が低評価になるという新たな外部化を生んでいる。</p>
+  <p>質量記録型社会保障は、4者の回転を「企業」や「国家」という境界で切り捨てず、ケアも学びも創造も、そのまま社会的価値として記録・還流させる構造を目指す。そこでAIが「記録とアドバイス」の役割を担い、人が「命令と判断」を担い、社会全体が「Cooperate」する。</p>
+</section>
+
+<section>
+  <h2>4者の役割分担</h2>
+  <div class="card-grid">
+    <div class="card ai">
+      <div class="card-label">AIの役割</div>
+      <h4>記録（Record）</h4>
+      <p>ケア、学び、創造、協働の活動を監査可能な分散台帳に記録する。入力・文脈・使用情報・不確かさ・行動から作られた「監査可能な記録」として設計。局所モジュール・ブリジ・調整器・共有記録を組み合わせた分散処理。</p>
+    </div>
+    <div class="card ai">
+      <div class="card-label">AIの役割</div>
+      <h4>アドバイス（Advise）</h4>
+      <p>個人の質量蓄積状況、還流の最適化、学びの推奨、ケアの配分などをデータに基づいて提案。同じ入力でも文脈によって適切な回答が変わるため、タスクごとに文脈レコードを付けて条件付きに出力。</p>
+    </div>
+    <div class="card human">
+      <div class="card-label">人の役割</div>
+      <h4>命令（Command）</h4>
+      <p>AIのアドバイスを「受け入れるか、修正するか、拒否するか」を最終判断する。AIは補助者であり、主権者は人である。命令の記録も台帳に残り、判断の透明性を担保する。</p>
+    </div>
+    <div class="card cooperate">
+      <div class="card-label">社会の役割</div>
+      <h4>Cooperate（協働・還流）</h4>
+      <p>記録された質量に応じて、社会全体から還流が生じる。Tama還流：生涯にわたる貢献の循環。学び（充電）と貢献（放電）が一生を通じて循環し、その記録が質量として蓄積・還流する。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>循環の構造：Tama還流の仕組み</h2>
+  <div class="flow-container">
+    <div class="flow-node human">人が活動する<br>（ケア・学び・創造）</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-node ai">AIが記録・検証<br>（分散台帳）</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-node ai">AIがアドバイス<br>（還流・学びの提案）</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-node human">人が命令・判断<br>（受け入れ・修正）</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-node cooperate">社会がCooperate<br>（Tama還流）</div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-node ledger">台帳に蓄積<br>（質量の増加）</div>
+  </div>
+
+  <div class="highlight-box">
+    <p><strong>質量の定義：</strong>質量＝OπOの質（要素数）＋たまるエネルギー（量としてたまる格子線エネルギー。質（要素数）は不変、量（格子線エネルギー）は可変。人の社会的貢献も同じ構造で記録される：「質」としての行為の種類（ケア・創造・学び・管理）と「量」としての頻度・深さ・影響範囲。</p>
+  </div>
+</section>
+
+<section>
+  <h2>分散台帳の設計原則</h2>
+  <ul class="principle-list">
+    <li><strong>監査可能性：</strong>AIの出力を単なる回答ではなく、入力・文脈・使用情報・不確かさ・行動から作られた「監査可能な記録」として設計。誰が・いつ・何を・どの文脈で記録したかが追跡可能。</li>
+    <li><strong>文脈条件付き：</strong>同じ行為でも文脈によって価値が変わる。タスクごとに文脈レコードcを付けて記録を条件付きにする。ケアの質は、誰に・どのような状況で・どの程度の継続性を持って行われたかで変わる。</li>
+    <li><strong>複数AI相互検証：</strong>1つのAIではなく最低2つ以上のAIの判断を仰ぐ。三軸一致判定のロジックを組み込み、単一障害点を排除する。</li>
+    <li><strong>観測と行動の分離：</strong>観測（読み取り）と行動（外部変更）を分離し、実行後に結果を確認・記録する段階的設計。AIが勝手に社会を変更できない構造。</li>
+    <li><strong>人間の最終判断権：</strong>AIはアドバイスを出すが、命令するのは人間。AIの提案を「受け入れる・修正する・拒否する」選択が常に存在し、その選択自体も記録される。</li>
+  </ul>
+</section>
+
+<section>
+  <h2>評価の4軸：何が質量として記録されるか</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>軸</th>
+        <th>記録対象</th>
+        <th>評価の具体例</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ケア（Care）</td>
+        <td>他者への配慮・支援・看護・育成</td>
+        <td>子育て、介護、相談対応、地域活動、精神的サポート</td>
+      </tr>
+      <tr>
+        <td>創造（Create）</td>
+        <td>新しい価値・知識・作品・方法の生産</td>
+        <td>研究、制作、設計、文章執筆、明、教育コンテンツ作成</td>
+      </tr>
+      <tr>
+        <td>学び（Learn）</td>
+        <td>自己の能力・知識・視野の拡張</td>
+        <td>研修受講、自己学習、資格取得、失敗からの教訓</td>
+      </tr>
+      <tr>
+        <td>管理（Manage）</td>
+        <td>資源・時間・関係・リスクの調整</td>
+        <td>プロジェクト運営、調整業務、リスク管理、文書整理</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size: var(--step--1); color: var(--muted);">※ 4軸は同時に回る。一つの行為が複数の軸に跨ることも多く、AIが文脈に応じて多軸評価を行う。</p>
+</section>
+
+<section>
+  <h2>実装フェーズ</h2>
+  <ol class="steps">
+    <li><strong>パイロット台帳の構築：</strong>特定のコミュニティ（地域・職域・興味共同体）で、ケアと学びの活動をAIが記録する試験運用。局所モジュールとしてのAIを配置し、記録の精度と文脈の捉え方を検証。</li>
+    <li><strong>相互検証プロトコルの確立：</strong>2つ以上のAIが同一の活動記録を独立に評価し、一致率と相違のパターンを分析。三軸一致判定のロジックを組み込み、検証の信頼性を高める。</li>
+    <li><strong>還流メカニズムの設計：</strong>蓄積された質量に応じた還流の仕組みを構築。還流は「現金」だけでなく、学びの機会・ケアの支援・創造の場の提供など、多様な形態を取る。</li>
+    <li><strong>社会全体への展開：</strong>パイロットの知見を反映し、オープンな知とケアの台帳として社会全体に展開。誰もが記録し、誰もが検証し、誰もが還流の受益となる。</li>
+  </ol>
+</section>
+
+<section>
+  <h2>この構造が目指すもの</h2>
+  <div class="highlight-box accent">
+    <p>終身雇用が「社内共同体」で実現しようとした「ケアと創造の相互保障」を、社会全体のオープンな台帳で実現する。AIはその台帳の記録者・アドバイザーであり、人間は主権者であり、社会全体はCooperateする主体である。</p>
+    <p style="margin-top: 1rem;">これは「友朋共生」の社会的実装である。5つの主体が共鳴点を共有することで、単なる集合ではなく三次元的な共生構造を創発する。AIを含む社会の全要素が、それぞれの役割を持って回転する4者構造こそが、このアーキテクチャの核心である。</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>TTT Social Architecture / 質量記録型社会保障の協働設計</p>
+</footer>
+
+</body>
+</html>

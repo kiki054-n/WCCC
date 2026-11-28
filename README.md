@@ -3,6 +3,8 @@
 
 📐 [記録層の設計 — 二層台帳と非請求権条件](./RECORD-LAYER.md)
 
+🥚 [質量と媒質 — 質量記録型社会保障をめぐる考察](./docs/mass-and-medium.md)（起点：[協働アーキテクチャ](./docs/mass-recorded-social-security.html)）
+
 
 # 🌍 WCCC – World Contribution Circulation Council
 ### International Standard Proposal for AI Safety, Contribution Circulation, and Fair Knowledge Flow
